@@ -1,0 +1,113 @@
+
+{
+  "entities": {
+    "Upload": {
+      "title": "Upload",
+      "description": "Represents a wearable locomotion dataset uploaded for analysis.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "fileName": { "type": "string" },
+        "datasetName": { "type": "string" },
+        "fileType": { "type": "string" },
+        "fileSizeBytes": { "type": "number" },
+        "uploadedAt": { "type": "string", "format": "date-time" },
+        "fileContent": { "type": "string" },
+        "status": { "type": "string", "enum": ["Analysed", "Pending", "Error"] }
+      },
+      "required": ["id", "fileName", "datasetName", "fileType", "fileSizeBytes", "uploadedAt", "fileContent", "status"]
+    },
+    "Validation": {
+      "title": "Validation",
+      "description": "Represents the detailed analytical report generated from an upload.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "uploadId": { "type": "string" },
+        "reportJson": { "type": "string" }
+      },
+      "required": ["id", "uploadId", "reportJson"]
+    },
+    "Ledger": {
+      "title": "Ledger",
+      "description": "A high-fidelity economic entry derived from validated human locomotion.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "activityDate": { "type": "string", "format": "date" },
+        "activityLabel": { "type": "string" },
+        "totalSeconds": { "type": "number" },
+        "validatedSeconds": { "type": "number" },
+        "validatedDistanceKm": { "type": "number" },
+        "avgValidatedSpeedMs": { "type": "number" },
+        "transportSeconds": { "type": "number" },
+        "artifactSeconds": { "type": "number" },
+        "pauseCount": { "type": "number" },
+        "longestPauseSeconds": { "type": "number" },
+        "hrMin": { "type": "number" },
+        "hrMax": { "type": "number" },
+        "baseCredits": { "type": "number" },
+        "finalCredits": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id",
+        "activityDate",
+        "activityLabel",
+        "totalSeconds",
+        "validatedSeconds",
+        "baseCredits",
+        "finalCredits",
+        "createdAt"
+      ]
+    },
+    "ValidationProfile": {
+      "title": "Validation Profile",
+      "description": "System-wide active locomotion model.",
+      "type": "object",
+      "properties": {
+        "activeProfile": { "type": "string", "enum": ["human"] }
+      },
+      "required": ["activeProfile"]
+    }
+  },
+  "auth": {
+    "providers": ["anonymous"]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/uploads/{uploadId}",
+        "definition": {
+          "entityName": "Upload",
+          "schema": { "$ref": "#/backend/entities/Upload" },
+          "description": "Collection of locomotion datasets."
+        }
+      },
+      {
+        "path": "/validations/{validationId}",
+        "definition": {
+          "entityName": "Validation",
+          "schema": { "$ref": "#/backend/entities/Validation" },
+          "description": "Collection of research validations."
+        }
+      },
+      {
+        "path": "/ledger/{ledgerId}",
+        "definition": {
+          "entityName": "Ledger",
+          "schema": { "$ref": "#/backend/entities/Ledger" },
+          "description": "High-fidelity research ledger."
+        }
+      },
+      {
+        "path": "/app_config/{configId}",
+        "definition": {
+          "entityName": "ValidationProfile",
+          "schema": { "$ref": "#/backend/entities/ValidationProfile" },
+          "description": "Global application configuration."
+        }
+      }
+    ]
+  }
+}

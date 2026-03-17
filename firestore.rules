@@ -1,0 +1,30 @@
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * WEARONOMICS LAB SECURITY RULES (Unified Demo Mode)
+     * All collections are root-level to ensure even-segment path compliance.
+     */
+
+    // High-fidelity research collections
+    match /uploads/{document=**} {
+      allow read, write: if true;
+    }
+    match /validations/{document=**} {
+      allow read, write: if true;
+    }
+    match /ledger/{document=**} {
+      allow read, write: if true;
+    }
+    match /app_config/{document=**} {
+      allow read, write: if true;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
