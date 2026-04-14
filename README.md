@@ -1,8 +1,8 @@
-# Wearonomics Lab
+# Wearonomics v1
 
 **Version 1.0 — Research Prototype**
 
-Wearonomics is a research framework designed to validate wearable movement data and translate verified human activity into structured analytical signals.
+Wearonomics v1 is a research framework designed to validate wearable movement data and translate verified human activity into structured analytical signals.
 
 The system explores how human-generated data can be recognised through transparent economic attribution, where validated movement produces measurable credit aligned with real-world behaviour.
 
