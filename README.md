@@ -1,8 +1,8 @@
-# Wearonomics Lab v1
+# Wearonomics v1
 
 ### A Human-Centric Validation and Ledger Framework for Wearable Movement Data
 
-Wearonomics Lab v1 is a reproducible research environment designed to validate wearable-derived movement data through transparent state-machine logic, physiological synchronization, and auditable ledger-based attribution systems.
+Wearonomics v1 is a reproducible research environment designed to validate wearable-derived movement data through transparent state-machine logic, physiological synchronization, and auditable ledger-based attribution systems.
 
 The framework was developed to investigate how real-world wearable telemetry can be segmented, interpreted, and validated under explicit analytical conditions while preserving methodological transparency and reproducibility.
 
